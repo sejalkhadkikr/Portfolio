@@ -53,6 +53,20 @@
     --link: rgba(63,81,181,.98);
     --shadow: 0 10px 30px rgba(0,0,0,.06);
 
+    /* Cross-browser surfaces (avoid color-mix for Safari) */
+    --surface: rgba(250,248,240,.88);
+    --surface-2: rgba(250,248,240,.94);
+    --text-soft: rgba(31,31,31,.78);
+    --text-strong: rgba(31,31,31,.90);
+    --muted-soft: rgba(31,31,31,.62);
+    --gold-underline: rgba(212,175,55,.34);
+    --accent-line: rgba(63,81,181,.55);
+    --accent-dot: rgba(63,81,181,.72);
+    --accent-ring: rgba(63,81,181,.18);
+    --accent-hover: rgba(63,81,181,.08);
+    --mono-bg: rgba(31,31,31,.05);
+    --mono-text: rgba(31,31,31,.86);
+
     /* Type */
     --serif: "Fraunces", ui-serif, Georgia, "Times New Roman", Times, serif;
     --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -87,6 +101,20 @@
       --accent-2: rgba(199,211,192,.18);
       --link: #E6EBDD;
       --shadow: 0 10px 30px rgba(0,0,0,.55);
+
+      /* Cross-browser surfaces (avoid color-mix for Safari) */
+      --surface: rgba(17,17,17,.78);
+      --surface-2: rgba(20,20,20,.86);
+      --text-soft: rgba(245,245,245,.84);
+      --text-strong: rgba(245,245,245,.92);
+      --muted-soft: rgba(245,245,245,.68);
+      --gold-underline: rgba(212,175,55,.28);
+      --accent-line: rgba(199,211,192,.55);
+      --accent-dot: rgba(199,211,192,.72);
+      --accent-ring: rgba(199,211,192,.18);
+      --accent-hover: rgba(199,211,192,.08);
+      --mono-bg: rgba(255,255,255,.08);
+      --mono-text: rgba(245,245,245,.90);
     }
 
     body {
@@ -286,12 +314,12 @@
     bottom: -6px;
     width: 100%;
     height: 1px;
-    background: color-mix(in oklab, var(--accent-gold) 38%, transparent);
+    background: var(--gold-underline);
     opacity: .9;
   }
 
   p { margin: 0 0 16px; color: var(--muted); }
-  .reading p { color: color-mix(in oklab, var(--text) 78%, var(--muted)); }
+  .reading p { color: var(--text-soft); }
   p strong { color: var(--text); font-weight: 600; }
 
   .hero {
@@ -356,7 +384,7 @@
     border: 1px solid var(--faint);
     border-radius: var(--radius);
     padding: 16px;
-    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    background: var(--surface-2);
     box-shadow: var(--shadow);
   }
 
@@ -390,8 +418,8 @@
     font-size: 12.5px;
     padding: 2px 6px;
     border-radius: 8px;
-    background: var(--faint-2);
-    color: color-mix(in oklab, var(--text) 85%, var(--muted));
+    background: var(--mono-bg);
+    color: var(--mono-text);
     white-space: nowrap;
   }
 
@@ -404,11 +432,11 @@
   blockquote {
     margin: 22px 0;
     padding: 14px 18px;
-    border-left: 2px solid color-mix(in oklab, var(--accent) 55%, transparent);
-    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    border-left: 2px solid var(--accent-line);
+    background: var(--surface);
     border-radius: 12px;
     font-family: var(--serif);
-    color: color-mix(in oklab, var(--text) 88%, var(--muted));
+    color: var(--text-strong);
     letter-spacing: -0.02em;
   }
 
@@ -482,12 +510,12 @@
     width: 6px;
     height: 6px;
     border-radius: 999px;
-    background: color-mix(in oklab, var(--accent) 60%, transparent);
-    box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 18%, transparent);
+    background: var(--accent-dot);
+    box-shadow: 0 0 0 6px var(--accent-ring);
   }
 
   .xp-item:hover {
-    background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 8%, transparent), transparent 40%);
+    background: linear-gradient(90deg, var(--accent-hover), transparent 40%);
   }
 
   /* Selected systems */
@@ -506,7 +534,7 @@
     border: 1px solid var(--faint);
     border-radius: var(--radius);
     padding: 16px;
-    background: color-mix(in oklab, var(--bg) 90%, transparent);
+    background: var(--surface);
   }
 
   .sys h3 {
@@ -534,7 +562,7 @@
   }
 
   .fine {
-    color: color-mix(in oklab, var(--muted) 80%, transparent);
+    color: var(--muted-soft);
     font-size: 13px;
   }
 
@@ -639,7 +667,7 @@
 
           <div class="right-rail">
             <div class="hero-photo reveal" aria-label="Portrait">
-              <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAFVaADAAQAAAABAAAIAAAAAAD/wAARCAgABVUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4n/4Qk0f/AD3H/wDGP/4Qk0f/AD3H/wDGP/4s/wDk5P8A16j/AMG//wCNRRRQB6D/AMJaaP8A57j/APjH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/9k=" alt="Portrait of Sejal Khadkikar" \/>
+              <img src="/assets/sejal.jpg" alt="Portrait of Sejal Khadkikar" loading="lazy" />
             </div>
             <aside class="signal reveal" aria-label="Credibility signals">
               <div class="signal-row">
