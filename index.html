@@ -613,6 +613,19 @@
     z-index: 999;
   }
 
+  .closing-note { 
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .closing-note p {
+    font-family: var(--font-serif);
+    opacity: 0.9; /* slightly darker than body */
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
   /* Print */
   @media print {
     .topbar, .grain, .cta { display: none !important; }
@@ -667,7 +680,7 @@
 
           <div class="right-rail">
             <div class="hero-photo reveal" aria-label="Portrait">
-              <img src="assets/sejal.jpg" alt="Portrait of Sejal Khadkikar" loading="lazy" />
+              <img src="assets/sejalPhoto.jpg" alt="Portrait of Sejal Khadkikar" loading="lazy" />
             </div>
             <aside class="signal reveal" aria-label="Credibility signals">
               <div class="signal-row">
@@ -902,9 +915,11 @@
               I thrive in environments that value clarity, autonomy, and strong craft.
               The best work happens when priorities are explicit, feedback is fast, and the system gets better each month.
             </p>
-            <p class="fine">
-              If you want a calm operator who can bring structure without noise, and who speaks engineering and business fluently, reach out.
-            </p>
+             <div class="closing-note">
+               <p> 
+                 If you want a calm operator who can bring structure without noise, and who speaks engineering and business fluently, reach out.
+               </p> 
+             </div>
           </div>
 
           <aside class="signal" aria-label="Contact details">
@@ -931,7 +946,7 @@
           <div class="divider" aria-hidden="true"></div>
           <div class="footer-bottom-row">
             <div>© <span id="year"></span> Sejal Khadkikar</div>
-            <div class="footer-tagline">Built with restraint · Designed for signal</div>
+            <div class="footer-tagline">Built with restraint · Designed for clarity </div>
           </div>
         </div>
       </div>
