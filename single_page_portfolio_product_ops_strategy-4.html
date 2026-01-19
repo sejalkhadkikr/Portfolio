@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Product Operations & Strategy, technically grounded operator bridging engineering, product, and execution." />
+  <title>Product Ops & Strategy — Portfolio</title>
+
+  <!--
+    Design System Config (tweak these like tokens)
+    - Edit colors/fonts here, then mirror the values in :root below.
+    - Keeping this block makes future tuning fast and intentional.
+  -->
+  <script type="application/json" id="design-system-config">{
+    "fonts": {
+      "serif": "Fraunces",
+      "sans": "Inter",
+      "mono": "ui-monospace"
+    },
+    "colors": {
+      "light": {
+        "bg": "#FAF8F0",
+        "text": "#1F1F1F",
+        "muted": "#2F2F2F",
+        "accent": "#3F51B5",
+        "accentGold": "#D4AF37"
+      },
+      "dark": {
+        "bg": "#0E0E0E",
+        "text": "#F5F5F5",
+        "muted": "#D1D1D1",
+        "accent": "#C7D3C0"
+      }
+    }
+  }</script>
+
+  <!-- Fonts (system-first, with optional Google Fonts fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    /* Palette */
+    --bg: #FAF8F0;
+    --text: #1F1F1F;
+    --muted: #2F2F2F;
+    --faint: rgba(31,31,31,.08);
+    --faint-2: rgba(31,31,31,.05);
+    --accent: #3F51B5;
+    --accent-gold: #D4AF37;
+    --accent-2: rgba(63,81,181,.14);
+    --link: rgba(63,81,181,.98);
+    --shadow: 0 10px 30px rgba(0,0,0,.06);
+
+    /* Type */
+    --serif: "Fraunces", ui-serif, Georgia, "Times New Roman", Times, serif;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Layout */
+    --max: 1080px;
+    --reading: 70ch;
+    --pad-x: clamp(20px, 4vw, 48px);
+    --pad-y: clamp(22px, 5vw, 72px);
+    --radius: 18px;
+
+    /* Rhythm */
+    --h1: clamp(34px, 4vw, 54px);
+    --h2: clamp(18px, 2vw, 22px);
+    --body: clamp(15px, 1.1vw, 17px);
+    --lh: 1.75;
+
+    /* Motion */
+    --ease: cubic-bezier(.2,.8,.2,1);
+    --dur: 520ms;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E0E0E;
+      --text: #F5F5F5;
+      --muted: #D1D1D1;
+      --faint: rgba(255,255,255,.14);
+      --faint-2: rgba(255,255,255,.08);
+      --accent: #C7D3C0;
+      --accent-2: rgba(199,211,192,.18);
+      --link: #E6EBDD;
+      --shadow: 0 10px 30px rgba(0,0,0,.55);
+    }
+
+    body {
+      background:
+        radial-gradient(900px 420px at 18% 10%, rgba(199,211,192,.08), transparent 60%),
+        radial-gradient(1000px 520px at 86% 18%, rgba(255,255,255,.04), transparent 60%),
+        var(--bg);
+    }
+
+    .reading p { color: #E8E8E8; }
+    .kicker, .xp-context, .xp-meta, .fine {
+    color: color-mix(in oklab, var(--muted) 80%, transparent);
+    font-size: 13px;
+  }
+
+  /* Utilities (remove inline styles) */
+  .reading-intro { margin: 0 auto 26px; }
+  .reading-outro { margin: 26px auto 0; }
+  .footer-bottom { margin-top: 28px; }
+  .footer-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-tagline { opacity: .9; }
+
+  /* Subtle reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Accessibility */
+  .skip {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .skip:focus {
+    left: 16px;
+    top: 16px;
+    width: auto;
+    height: auto;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--faint);
+    border-radius: 10px;
+    z-index: 999;
+  }
+
+  /* Print */
+  @media print {
+    .topbar, .grain, .cta { display: none !important; }
+    body { background: #fff; color: #000; }
+    .xp-item:hover { background: none; }
+  }
+</style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar" role="banner">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="brand" aria-label="Site identity">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <div class="name">Sejal Khadkikar</div>
+            <div class="role">Product Operations & Strategy</div>
+          </div>
+        </div>
+
+        <nav aria-label="On-page navigation">
+          <a href="#summary">Summary</a>
+          <a href="#narrative">Approach</a>
+          <a href="#experience">Work</a>
+          <a href="#case-studies">Case Studies</a>
+          <a href="#systems">Systems</a>
+          <a href="#contact" class="cta">Contact <span aria-hidden="true">→</span></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" role="main">
+
+    <!-- HERO -->
+    <section class="hero" id="summary">
+      <div class="wrap">
+        <div class="hero-grid">
+
+          <div class="reveal">
+            <div class="kicker">Product-native operator</div>
+            <h1>Product operations & strategy, bridging engineering, product, and execution.</h1>
+            <p class="lead">
+              I work where roadmap meets reality: ambiguous problems, cross-functional constraints, and systems that must ship cleanly.
+              My edge is technical fluency paired with operational rigor, turning uncertainty into structured plans, dependable delivery, and measurable outcomes.
+            </p>
+            <p class="roleline">Focus: <span>0→1 build support, delivery clarity, operating cadence, risk-aware execution, and growth-adjacent strategy.</span></p>
+          </div>
+
+          <div class="right-rail">
+            <div class="hero-photo reveal" aria-label="Portrait">
+              <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAFVaADAAQAAAABAAAIAAAAAAD/wAARCAgABVUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4n/4Qk0f/AD3H/wDGP/4Qk0f/AD3H/wDGP/4s/wDk5P8A16j/AMG//wCNRRRQB6D/AMJaaP8A57j/APjH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/8JaaP/nuP/jH/wDEJaaP/nuP/jH/AIo/wDk5P/XqP/Bv/wDjUUUUAel/9k=" alt="Portrait of Sejal Khadkikar" \/>
+            </div>
+            <aside class="signal reveal" aria-label="Credibility signals">
+              <div class="signal-row">
+                <div class="label">Operating mode</div>
+                <div class="value">Calm execution under ambiguity</div>
+              </div>
+              <div class="signal-row">
+                <div class="label">Strength</div>
+                <div class="value">Systems + alignment + velocity</div>
+              </div>
+              <div class="signal-row">
+                <div class="label">Domains</div>
+                <div class="value">Wellness · AI health · Fintech · SaaS</div>
+              </div>
+              <div class="signal-row">
+                <div class="label">Technical grounding</div>
+                <div class="value"><span class="mono">Java</span> <span class="mono">APIs</span> <span class="mono">SDLC</span> <span class="mono">CI/CD</span></div>
+              </div>
+            </aside>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- NARRATIVE -->
+    <section id="narrative">
+      <div class="wrap">
+        <div class="reading reveal">
+          <h2>How I operate</h2>
+          <p>
+            I began in software, learning to build with <span class="mono">Java</span>, shipping Android applications, and working through the fundamentals: data structures, APIs, integration, and the discipline of making systems maintainable.
+            That foundation shaped how I think about products: not as concepts, but as <strong>living systems</strong> that accrue complexity and require intentional design.
+          </p>
+          <p>
+            Over time, I moved closer to product and delivery, where engineering intuition becomes leverage for broader problems.
+            Across wellness technology, AI healthtech, fintech infrastructure, and enterprise SaaS, I’ve worked at the intersection of engineering, product, and operations, helping teams turn ambiguity into clear plans and executable systems.
+            I’m comfortable with technical tradeoffs, but I stay oriented toward customer outcomes and business constraints.
+          </p>
+
+          <blockquote>
+            I improve not only <em>what</em> teams build,
+            but <em>how</em> they build it.
+          </blockquote>
+
+          <p>
+            In early-stage environments, I’ve supported 0→1 initiatives by translating research and market signals into scoped MVPs, designing onboarding and content systems with scalability in mind, and operationalizing sprint rituals, documentation standards, and decision logs.
+            The goal is simple: <strong>ship quickly without hidden debt</strong>, technical, operational, or organizational.
+          </p>
+          <p>
+            In regulated domains like AI-driven healthcare, the work demands rigor: feasibility, clinical workflows, stakeholder alignment, and de-risking architecture through early validation.
+            That constraint-heavy context strengthened my product judgment and my ability to run clean feedback loops where mistakes are expensive.
+          </p>
+          <p>
+            I’ve also contributed to enterprise SaaS strategy, segmentation, TAM thinking, opportunity sizing, and executive-ready narrative.
+            Earlier, in production-grade fintech environments, I managed deployments, change operations, and incident response across global banking clients.
+            Reliability and risk discipline remain core to how I evaluate product decisions and delivery tradeoffs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="reveal">
+          <h2>Work, represented as capability</h2>
+          <p class="reading reading-intro">
+            A few representative blocks, focused on scope, complexity, and outcomes. Titles and timelines are intentionally quiet.
+          </p>
+
+          <div class="xp" aria-label="Experience blocks">
+
+            <article class="xp-item" tabindex="0">
+              <div class="xp-head">
+                <div>
+                  <div class="xp-title">Product Operations & Delivery, Early-stage Wellness Tech</div>
+                  <div class="xp-context">0→1 MVP support · onboarding & content systems · sprint cadence & execution clarity</div>
+                </div>
+                <div class="xp-meta">High ambiguity · fast iteration</div>
+              </div>
+              <div class="xp-body">
+                <ul class="impact">
+                  <li>Translated dense discovery into an MVP roadmap and delivery plan,clean scope boundaries, explicit tradeoffs, and a realistic path to launch.</li>
+                  <li>Built lightweight operating systems: sprint rituals, decision logs, documentation standards, and handoff patterns that reduced thrash and improved cross-functional alignment.</li>
+                  <li>Designed onboarding/content structure with scalability in mind, keeping velocity high while avoiding compounding operational debt.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="xp-item" tabindex="0">
+              <div class="xp-head">
+                <div>
+                  <div class="xp-title">Product Strategy & Requirements, AI Healthtech</div>
+                  <div class="xp-context">Regulated constraints · clinical workflows · validation loops · architecture de-risking</div>
+                </div>
+                <div class="xp-meta">Rigor · stakeholder complexity</div>
+              </div>
+              <div class="xp-body">
+                <ul class="impact">
+                  <li>Defined product requirements with engineering + medical stakeholders,balancing feasibility, workflow reality, and compliance-minded constraints.</li>
+                  <li>Structured validation cycles and feedback loops to de-risk core product assumptions early, reducing costly downstream rework.</li>
+                  <li>Produced executive-ready artifacts that made decisions legible: requirements, rationale, risks, and measurable acceptance criteria.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="xp-item" tabindex="0">
+              <div class="xp-head">
+                <div>
+                  <div class="xp-title">GTM / Growth Strategy, Enterprise SaaS</div>
+                  <div class="xp-context">Segmentation · TAM thinking · opportunity sizing · planning narratives</div>
+                </div>
+                <div class="xp-meta">Executive clarity · market logic</div>
+              </div>
+              <div class="xp-body">
+                <ul class="impact">
+                  <li>Conducted segmentation and sizing work to inform growth initiatives and planning,linking market structure to product bets.</li>
+                  <li>Translated analysis into decision-ready narrative: assumptions, sensitivity, implications, and recommended focus areas.</li>
+                  <li>Partnered cross-functionally to align priorities and operationalize next steps inside existing constraints.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="xp-item" tabindex="0">
+              <div class="xp-head">
+                <div>
+                  <div class="xp-title">Operations & Reliability, Fintech Infrastructure</div>
+                  <div class="xp-context">Deployments · change operations · incident response · regulated uptime expectations</div>
+                </div>
+                <div class="xp-meta">Production discipline · risk management</div>
+              </div>
+              <div class="xp-body">
+                <ul class="impact">
+                  <li>Managed production-grade delivery operations across global banking clients, prioritizing reliability, traceability, and controlled change.</li>
+                  <li>Built respect for system invariants: what must never break, how to fail safely, and how to learn quickly from incidents.</li>
+                  <li>Carried operational discipline forward into product work, making tradeoffs explicit and guarding velocity against instability.</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- CASE STUDIES -->
+    <section id="case-studies">
+      <div class="wrap">
+        <div class="reading reveal">
+          <h2>Case studies</h2>
+          <p>
+            A small set of deep dives will live here,each written like an internal product memo: context, constraints, decisions, tradeoffs, and outcomes.
+          </p>
+          <p class="fine">
+            Coming next: 0→1 wellness MVP operating system · AI healthtech requirements + validation loop · enterprise SaaS sizing narrative.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- SYSTEMS -->
+    <section id="systems">
+      <div class="wrap">
+        <div class="reveal">
+          <h2>Systems I build around teams</h2>
+          <p class="reading" style="margin: 0 auto 26px;">
+            I prefer lightweight structure that scales: enough process to reduce ambiguity, not enough to slow execution.
+            The best systems are the ones teams keep using without thinking about them.
+          </p>
+
+          <div class="systems" aria-label="Operating systems">
+            <div class="sys">
+              <h3>Decision & delivery clarity</h3>
+              <p>
+                Decision logs, crisp ownership, release notes, and a single source of truth.
+                Designed so a new teammate can understand <strong>what shipped</strong>, <strong>why</strong>, and <strong>what’s next</strong>.
+              </p>
+            </div>
+            <div class="sys">
+              <h3>Feedback loops that de-risk</h3>
+              <p>
+                Structured validation cycles, measurable acceptance criteria, and fast learning.
+                Especially in constraint-heavy domains where errors are costly.
+              </p>
+            </div>
+            <div class="sys">
+              <h3>Operating cadence that protects velocity</h3>
+              <p>
+                Sprint rituals, backlog hygiene, clear handoffs, and predictable touchpoints.
+                Built to reduce thrash while preserving momentum.
+              </p>
+            </div>
+            <div class="sys">
+              <h3>Reliability-minded execution</h3>
+              <p>
+                A bias for stable systems: monitoring, incident learning, and risk-aware change.
+                Less drama, more uptime.
+              </p>
+            </div>
+          </div>
+
+          <p class="reading reading-outro">
+            Technical fluency stays present, but understated: tools belong in context.
+            You’ll see <span class="mono">APIs</span>, <span class="mono">SDLC</span>, <span class="mono">CI/CD</span>, and production reliability referenced where they matter, not as a wall of logos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <!-- CONTACT / CLOSE -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="footer-grid reveal">
+          <div>
+            <h2>What I’m looking for</h2>
+            <p>
+              Roles where I can partner closely with engineering and product leadership to build clean operating structure, accelerate execution, and raise the bar on delivery quality.
+              I’m most energized by teams working on high-impact problems with real constraints,technical, regulatory, or organizational.
+            </p>
+            <p>
+              I thrive in environments that value clarity, autonomy, and strong craft.
+              The best work happens when priorities are explicit, feedback is fast, and the system gets better each month.
+            </p>
+            <p class="fine">
+              If you want a calm operator who can bring structure without noise, and who speaks engineering and business fluently, reach out.
+            </p>
+          </div>
+
+          <aside class="signal" aria-label="Contact details">
+            <div class="signal-row">
+              <div class="label">Email</div>
+              <div class="value"><a href="mailto:sejkhad789@gmail.com">sejkhad789@gmail.com</a></div>
+            </div>
+            <div class="signal-row">
+              <div class="label">LinkedIn</div>
+              <div class="value"><a href="https://linkedin.com/in/sejal-khadkikar" target="_blank" rel="noreferrer">linkedin.com/in/sejal-khadkikar</a></div>
+            </div>
+            <div class="signal-row">
+              <div class="label">Resume</div>
+              <div class="value"><a href="https://docs.google.com/document/d/1c-5Vvk9ClHBfbMVWZ8_CWajqjQ6HA4yN/edit?usp=sharing&ouid=103869806300608176677&rtpof=true&sd=true" target="_blank" rel="noreferrer">Resume</a></div>
+            </div>
+            <div class="signal-row">
+              <div class="label">Location</div>
+              <div class="value">New York based · Open to relocate · Open to remote</div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="fine reveal footer-bottom">
+          <div class="divider" aria-hidden="true"></div>
+          <div class="footer-bottom-row">
+            <div>© <span id="year"></span> Sejal Khadkikar</div>
+            <div class="footer-tagline">Built with restraint · Designed for signal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Minimal active-section highlighting + subtle reveals
+    const links = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+    const sections = links
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+
+    const setCurrent = (id) => {
+      links.forEach(a => a.removeAttribute('aria-current'));
+      const active = links.find(a => a.getAttribute('href') === `#${id}`);
+      if (active) active.setAttribute('aria-current', 'page');
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setCurrent(entry.target.id);
+      });
+    }, { root: null, threshold: 0.2 });
+
+    sections.forEach(s => io.observe(s));
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const rio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => rio.observe(el));
+
+    // Smooth scrolling + reliable in-canvas navigation
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Some embedded previews can be finicky with hash navigation.
+    // Force scrollIntoView on nav click so tabs always work.
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const el = document.querySelector(href);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', href);
+      });
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
